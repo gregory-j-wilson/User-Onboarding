@@ -28,26 +28,29 @@ function App() {
     
     const newUser = { ...formValues, [name]: value }
     setFormValues(newUser)
-    
+    inputChange(name, value)
 }
 
 
+useEffect( () => {
+  
+})
 
-const inputChange = e => {
+const inputChange = (name, value) => {
 
-  e.persist();
+  
   
         // yup.reach will allow us to "reach" into the schema and test only one part.
       // We give reach the schema as the first argument, and the key we want to test as the second.
       yup
-        .reach(formSchema, e.target.name)
+        .reach(formSchema, name)
         //we can then run validate using the value
-        .validate(e.target.value)
+        .validate(value)
         // if the validation is successful, we can clear the error message
         .then(valid => {
           setErrors({
             ...errors,
-            [e.target.name]: ""
+            [name]: ""
           });
         })
         /* if the validation is unsuccessful, we can set the error message to the message 
@@ -55,16 +58,17 @@ const inputChange = e => {
         .catch(err => {
           setErrors({
             ...errors,
-            [e.target.name]: err.errors[0] 
+            [name]: err.errors[0] 
           });
         });
   
       // Wether or not our validation was successful, we will still set the state to the new value as the user is typing
       setFormValues({
         ...formValues,
-        [e.target.name]: e.target.value
+        [name]: value
       });
     };
+  
 
   const submitForm = () => {
 
@@ -143,7 +147,14 @@ const inputChange = e => {
         submit={submitForm}
         isButtonDisabled={isButtonDisabled}
 
+
       />
+      <div className='errors'>
+          {/* 🔥 RENDER THE VALIDATION ERRORS HERE */}
+          <div>{errors.name}</div>
+          <div>{errors.email}</div>
+          <div>{errors.password}</div>
+        </div>
 
       {users.map( user => {
           return (

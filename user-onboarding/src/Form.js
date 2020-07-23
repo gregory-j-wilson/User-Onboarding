@@ -48,13 +48,14 @@ function Form (props) {
                 placeholder='Email'
                 value={formValues.email}
                 onChange={handleChange}
+                
             />
             <br></br>
             <label htmlFor='password'>Password:</label> 
             <input 
                 id='password'
                 name='password'
-                type='text'
+                type='password'
                 placeholder='Password'
                 value={formValues.password}
                 onChange={handleChange}
@@ -72,6 +73,7 @@ function Form (props) {
             <input type="submit" value="Submit" disabled={isButtonDisabled} />  
             
         </form>
+        
         
         </div>
     )
