@@ -151,9 +151,10 @@ const inputChange = (name, value) => {
       />
       <div className='errors'>
           {/* 🔥 RENDER THE VALIDATION ERRORS HERE */}
-          <div>{errors.name}</div>
-          <div>{errors.email}</div>
-          <div>{errors.password}</div>
+          <div className='name'>{errors.name}</div>
+          <div className='email'>{errors.email}</div>
+          <div className='password'>{errors.password}</div>
+          <div className='terms'>{errors.terms}</div>
         </div>
 
       {users.map( user => {
